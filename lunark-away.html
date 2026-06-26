@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lunark — away</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #FAF3E8;
+      --amber:      #E8C99A;
+      --amber-deep: #C9A96A;
+      --terra:      #C17A4A;
+      --forest:     #4A7C59;
+      --forest-lt:  #7AAF8A;
+      --ink:        #3B2A1A;
+      --ink-soft:   #6B4F38;
+      --note-bg:    #FEFAF2;
+      --note-shadow: rgba(90, 55, 20, 0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(200, 150, 80, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 100%, rgba(74, 124, 89, 0.08) 0%, transparent 55%);
+      font-family: 'Nunito', sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Sticker layer ── */
+    .stickers {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sticker {
+      position: absolute;
+      opacity: 0.72;
+    }
+
+    /* ── Main content ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 660px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 10px 0 6px;
+    }
+
+    .site-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.9rem;
+      font-weight: 700;
+      color: var(--terra);
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .site-subtitle {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      opacity: 0.75;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--amber-deep), var(--forest-lt));
+      border-radius: 2px;
+      margin: 14px auto 0;
+    }
+
+    /* ── Note cards ── */
+    .note {
+      background: var(--note-bg);
+      border-radius: 14px;
+      padding: 30px 34px 28px;
+      box-shadow:
+        0 2px 8px var(--note-shadow),
+        0 0 0 1px rgba(193, 122, 74, 0.10);
+      position: relative;
+    }
+
+    .note-label {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--forest);
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .note-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--amber) 0%, transparent 100%);
+      margin-left: 4px;
+    }
+
+    .note-body {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--ink);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* editable blocks */
+    [contenteditable="true"] {
+      outline: none;
+      border-radius: 6px;
+      transition: background 0.18s;
+      cursor: text;
+    }
+    [contenteditable="true"]:focus {
+      background: rgba(232, 201, 154, 0.18);
+      outline: 1.5px dashed var(--amber-deep);
+      outline-offset: 2px;
+    }
+
+    .edit-hint {
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      opacity: 0.45;
+      margin-top: 10px;
+      font-style: italic;
+      text-align: right;
+      pointer-events: none;
+    }
+
+    /* ── Footer / contact ── */
+    footer {
+      background: var(--note-bg);
+      border-radius: 14px;
+      padding: 26px 34px;
+      box-shadow:
+        0 2px 8px var(--note-shadow),
+        0 0 0 1px rgba(193, 122, 74, 0.10);
+      text-align: center;
+    }
+
+    .footer-label {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--terra);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── Bottom tag ── */
+    .page-foot {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      opacity: 0.38;
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .site-title { font-size: 2.2rem; }
+      .note, footer { padding: 22px 20px 20px; }
+      .sticker { transform: scale(0.7); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ Stickers ══ -->
+<div class="stickers" aria-hidden="true">
+
+  <!-- LEFT SIDE -->
+
+  <!-- Pine branch top-left -->
+  <svg class="sticker" style="top:40px;left:18px;width:90px;transform:rotate(18deg)" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="45" y1="10" x2="45" y2="110" stroke="#4A7C59" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="45" y1="30" x2="22" y2="52" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
+    <line x1="45" y1="45" x2="68" y2="67" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
+    <line x1="45" y1="60" x2="18" y2="82" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
+    <line x1="45" y1="75" x2="72" y2="97" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="22" cy="52" r="3" fill="#7AAF8A" opacity=".7"/>
+    <circle cx="68" cy="67" r="3" fill="#7AAF8A" opacity=".7"/>
+    <circle cx="18" cy="82" r="3" fill="#7AAF8A" opacity=".7"/>
+    <circle cx="72" cy="97" r="3" fill="#7AAF8A" opacity=".7"/>
+  </svg>
+
+  <!-- Mushroom left-mid -->
+  <svg class="sticker" style="top:260px;left:28px;width:58px;transform:rotate(-8deg)" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="22" y="38" width="16" height="22" rx="4" fill="#FEFAF2" stroke="#C17A4A" stroke-width="1.8"/>
+    <ellipse cx="30" cy="38" rx="24" ry="16" fill="#C17A4A"/>
+    <ellipse cx="22" cy="33" rx="4" ry="2.5" fill="#FAF3E8" opacity=".55"/>
+    <ellipse cx="36" cy="30" rx="3" ry="2" fill="#FAF3E8" opacity=".45"/>
+  </svg>
+
+  <!-- Leaf sprig left-lower -->
+  <svg class="sticker" style="top:480px;left:10px;width:80px;transform:rotate(12deg)" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40 90 Q20 60 30 30 Q40 10 40 10 Q40 10 50 30 Q60 60 40 90Z" fill="#4A7C59" opacity=".6"/>
+    <line x1="40" y1="90" x2="40" y2="10" stroke="#2d5c3e" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M40 50 Q28 42 22 32" stroke="#2d5c3e" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M40 62 Q52 54 58 44" stroke="#2d5c3e" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M40 38 Q30 30 26 20" stroke="#2d5c3e" stroke-width="1" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <!-- Candle left-bottom -->
+  <svg class="sticker" style="bottom:160px;left:32px;width:44px;transform:rotate(-5deg)" viewBox="0 0 44 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="12" y="32" width="20" height="42" rx="4" fill="#E8C99A"/>
+    <rect x="18" y="32" width="4" height="42" rx="2" fill="#C9A96A" opacity=".4"/>
+    <line x1="22" y1="32" x2="22" y2="22" stroke="#3B2A1A" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="22" cy="16" rx="5" ry="7" fill="#C17A4A" opacity=".75"/>
+    <ellipse cx="22" cy="13" rx="2.5" ry="4" fill="#FAF3E8" opacity=".55"/>
+  </svg>
+
+  <!-- RIGHT SIDE -->
+
+  <!-- Cozy mug top-right -->
+  <svg class="sticker" style="top:55px;right:22px;width:62px;transform:rotate(-10deg)" viewBox="0 0 62 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="22" width="38" height="36" rx="7" fill="#E8C99A" stroke="#C9A96A" stroke-width="1.8"/>
+    <path d="M44 30 Q56 30 56 40 Q56 50 44 50" stroke="#C9A96A" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M14 10 Q16 4 14 0" stroke="#7AAF8A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6"/>
+    <path d="M22 8 Q24 2 22 -2" stroke="#7AAF8A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".5"/>
+    <path d="M30 10 Q32 4 30 0" stroke="#7AAF8A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6"/>
+  </svg>
+
+  <!-- Fern right-mid -->
+  <svg class="sticker" style="top:280px;right:16px;width:72px;transform:rotate(-14deg)" viewBox="0 0 72 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="36" y1="100" x2="36" y2="10" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
+    <path d="M36 80 Q20 65 10 50" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M36 65 Q52 50 62 35" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M36 50 Q22 38 14 24" stroke="#4A7C59" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <path d="M36 35 Q48 24 56 12" stroke="#4A7C59" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <!-- leaflets left -->
+    <ellipse cx="18" cy="64" rx="9" ry="5" fill="#7AAF8A" opacity=".65" transform="rotate(-35 18 64)"/>
+    <ellipse cx="10" cy="50" rx="9" ry="5" fill="#7AAF8A" opacity=".55" transform="rotate(-40 10 50)"/>
+    <ellipse cx="14" cy="35" rx="8" ry="4" fill="#7AAF8A" opacity=".5" transform="rotate(-45 14 35)"/>
+    <!-- leaflets right -->
+    <ellipse cx="54" cy="49" rx="9" ry="5" fill="#7AAF8A" opacity=".65" transform="rotate(35 54 49)"/>
+    <ellipse cx="56" cy="35" rx="8" ry="4.5" fill="#7AAF8A" opacity=".55" transform="rotate(40 56 35)"/>
+  </svg>
+
+  <!-- Small berries right-lower -->
+  <svg class="sticker" style="bottom:200px;right:26px;width:54px;transform:rotate(6deg)" viewBox="0 0 54 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="27" y1="65" x2="27" y2="30" stroke="#4A7C59" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M27 45 Q18 35 12 25" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M27 38 Q36 28 42 18" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <circle cx="12" cy="22" r="6" fill="#C17A4A" opacity=".75"/>
+    <circle cx="42" cy="16" r="6" fill="#C17A4A" opacity=".75"/>
+    <circle cx="27" cy="10" r="5" fill="#C17A4A" opacity=".65"/>
+    <circle cx="12" cy="22" r="2" fill="#FAF3E8" opacity=".4"/>
+    <circle cx="42" cy="16" r="2" fill="#FAF3E8" opacity=".4"/>
+    <circle cx="27" cy="10" r="1.5" fill="#FAF3E8" opacity=".4"/>
+  </svg>
+
+  <!-- Acorn bottom-right -->
+  <svg class="sticker" style="bottom:100px;right:40px;width:42px;transform:rotate(-15deg)" viewBox="0 0 42 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="21" cy="38" rx="14" ry="16" fill="#C9A96A"/>
+    <path d="M7 28 Q10 16 21 16 Q32 16 35 28Z" fill="#4A7C59"/>
+    <line x1="21" y1="16" x2="21" y2="8" stroke="#3B2A1A" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+
+</div>
+
+<!-- ══ Page ══ -->
+<main class="page">
+
+  <header>
+    <div class="site-title">lunark</div>
+    <div class="site-subtitle">away for now</div>
+    <div class="divider"></div>
+  </header>
+
+  <!-- Block 1: WHY -->
+  <div class="note">
+    <div class="note-label">🌿 what's going on</div>
+    <div
+      class="note-body"
+      contenteditable="true"
+      spellcheck="true"
+      aria-label="Edit reason for being away"
+    >i'm taking a step back right now. it might be for a little while, or it might be longer — i honestly don't know yet. whatever the reason, i wanted to leave something here so you're not left wondering.
+
+thank you for caring enough to look. that means a lot. 🍂</div>
+    <div class="edit-hint">click to edit</div>
+  </div>
+
+  <!-- Block 2: WHAT TO DO -->
+  <div class="note">
+    <div class="note-label">🌱 what you can do</div>
+    <div
+      class="note-body"
+      contenteditable="true"
+      spellcheck="true"
+      aria-label="Edit what visitors should do"
+    >please don't worry too much. i'll be back when i'm ready.
+
+if we're close, feel free to leave a kind message — i'll read it when i resurface. if you're not sure what to do, just sit tight. the best thing you can do for me right now is give me a little space. 🌸</div>
+    <div class="edit-hint">click to edit</div>
+  </div>
+
+  <!-- Block 3: CONTACT / FOOTER -->
+  <footer>
+    <div class="footer-label">✉️ contact</div>
+    <div
+      class="footer-body"
+      contenteditable="true"
+      spellcheck="true"
+      aria-label="Edit contact information"
+    >[ edit this with your contact preference — e.g. "you can reach me at …" or "please don't contact me right now" ]</div>
+    <div class="edit-hint">click to edit</div>
+  </footer>
+
+  <p class="page-foot">lunark's little away page &nbsp;·&nbsp; made with care</p>
+
+</main>
+
+</body>
+</html>
