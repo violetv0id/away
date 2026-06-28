@@ -4,37 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lunark — away</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:      #FAF3E8;
-      --amber:      #E8C99A;
-      --amber-deep: #C9A96A;
-      --terra:      #C17A4A;
-      --forest:     #4A7C59;
-      --forest-lt:  #7AAF8A;
-      --ink:        #3B2A1A;
-      --ink-soft:   #6B4F38;
-      --note-bg:    #FEFAF2;
-      --note-shadow: rgba(90, 55, 20, 0.10);
+      --bg:         #0e0d11;
+      --bg-card:    #14121a;
+      --lavender:   #b8a9d4;
+      --lavender-lt:#d4cce8;
+      --lavender-dk:#7c6fa0;
+      --white-soft: #ede9f5;
+      --ink:        #c8c0dc;
+      --ink-muted:  #7a7090;
+      --border:     rgba(184, 169, 212, 0.10);
+      --glow:       rgba(184, 169, 212, 0.06);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--cream);
+      background-color: var(--bg);
       background-image:
-        radial-gradient(ellipse at 20% 0%, rgba(200, 150, 80, 0.10) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 100%, rgba(74, 124, 89, 0.08) 0%, transparent 55%);
+        radial-gradient(ellipse at 30% 0%, rgba(140, 110, 180, 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse at 75% 90%, rgba(100, 80, 140, 0.07) 0%, transparent 55%);
       font-family: 'Nunito', sans-serif;
       color: var(--ink);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 60px 24px 80px;
+      padding: 64px 24px 88px;
       position: relative;
       overflow-x: hidden;
     }
@@ -49,7 +49,7 @@
 
     .sticker {
       position: absolute;
-      opacity: 0.72;
+      opacity: 0.38;
     }
 
     /* ── Main content ── */
@@ -57,113 +57,115 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 660px;
+      max-width: 620px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 22px;
     }
 
     /* ── Header ── */
     header {
       text-align: center;
-      padding: 10px 0 6px;
+      padding: 8px 0 4px;
+    }
+
+    .flower {
+      display: block;
+      margin: 0 auto 18px;
+      opacity: 0.82;
     }
 
     .site-title {
       font-family: 'Caveat', cursive;
-      font-size: 2.9rem;
+      font-size: 2.8rem;
       font-weight: 700;
-      color: var(--terra);
-      letter-spacing: 0.5px;
+      color: var(--lavender-lt);
+      letter-spacing: 1px;
       line-height: 1;
     }
 
     .site-subtitle {
       font-family: 'Nunito', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--ink-soft);
-      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-top: 6px;
-      opacity: 0.75;
+      margin-top: 8px;
+      opacity: 0.7;
     }
 
     .divider {
-      width: 48px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--amber-deep), var(--forest-lt));
-      border-radius: 2px;
-      margin: 14px auto 0;
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--lavender-dk), transparent);
+      margin: 18px auto 0;
+      opacity: 0.6;
     }
 
     /* ── Note cards ── */
     .note {
-      background: var(--note-bg);
-      border-radius: 14px;
-      padding: 30px 34px 28px;
-      box-shadow:
-        0 2px 8px var(--note-shadow),
-        0 0 0 1px rgba(193, 122, 74, 0.10);
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 28px 32px 26px;
+      border: 1px solid var(--border);
       position: relative;
     }
 
     .note-label {
       font-family: 'Caveat', cursive;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--forest);
-      letter-spacing: 0.04em;
+      color: var(--lavender-dk);
+      letter-spacing: 0.05em;
       text-transform: lowercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
 
     .note-label::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, var(--amber) 0%, transparent 100%);
+      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
       margin-left: 4px;
     }
 
     .note-body {
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.75;
+      font-size: 0.97rem;
+      font-weight: 300;
+      line-height: 1.85;
       color: var(--ink);
       white-space: pre-wrap;
       word-break: break-word;
+      opacity: 0.88;
     }
-
-
 
     /* ── Footer / contact ── */
     footer {
-      background: var(--note-bg);
-      border-radius: 14px;
-      padding: 26px 34px;
-      box-shadow:
-        0 2px 8px var(--note-shadow),
-        0 0 0 1px rgba(193, 122, 74, 0.10);
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 24px 32px;
+      border: 1px solid var(--border);
       text-align: center;
     }
 
     .footer-label {
       font-family: 'Caveat', cursive;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--terra);
+      color: var(--lavender-dk);
       margin-bottom: 10px;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
     }
 
     .footer-body {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--ink-soft);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-muted);
       white-space: pre-wrap;
       word-break: break-word;
     }
@@ -171,18 +173,19 @@
     /* ── Bottom tag ── */
     .page-foot {
       text-align: center;
-      font-size: 0.72rem;
-      color: var(--ink-soft);
-      opacity: 0.38;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      opacity: 0.3;
       font-style: italic;
-      margin-top: 8px;
+      margin-top: 6px;
+      letter-spacing: 0.04em;
     }
 
     /* ── Responsive ── */
     @media (max-width: 520px) {
       .site-title { font-size: 2.2rem; }
-      .note, footer { padding: 22px 20px 20px; }
-      .sticker { transform: scale(0.7); }
+      .note, footer { padding: 20px 18px 18px; }
+      .sticker { opacity: 0.22; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -195,92 +198,70 @@
 <!-- ══ Stickers ══ -->
 <div class="stickers" aria-hidden="true">
 
-  <!-- LEFT SIDE -->
-
-  <!-- Pine branch top-left -->
-  <svg class="sticker" style="top:40px;left:18px;width:90px;transform:rotate(18deg)" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="45" y1="10" x2="45" y2="110" stroke="#4A7C59" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="45" y1="30" x2="22" y2="52" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
-    <line x1="45" y1="45" x2="68" y2="67" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
-    <line x1="45" y1="60" x2="18" y2="82" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
-    <line x1="45" y1="75" x2="72" y2="97" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="22" cy="52" r="3" fill="#7AAF8A" opacity=".7"/>
-    <circle cx="68" cy="67" r="3" fill="#7AAF8A" opacity=".7"/>
-    <circle cx="18" cy="82" r="3" fill="#7AAF8A" opacity=".7"/>
-    <circle cx="72" cy="97" r="3" fill="#7AAF8A" opacity=".7"/>
+  <!-- TOP LEFT: ink branch -->
+  <svg class="sticker" style="top:30px;left:14px;width:100px;transform:rotate(12deg)" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="50" y1="120" x2="50" y2="10" stroke="#b8a9d4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M50 90 Q28 72 14 58" stroke="#b8a9d4" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M50 70 Q72 52 84 38" stroke="#b8a9d4" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M50 50 Q30 36 18 22" stroke="#b8a9d4" stroke-width="1" fill="none" stroke-linecap="round"/>
+    <path d="M50 35 Q68 22 76 10" stroke="#b8a9d4" stroke-width="1" fill="none" stroke-linecap="round"/>
+    <!-- small leaf tips -->
+    <ellipse cx="14" cy="56" rx="5" ry="3" fill="#7c6fa0" opacity=".5" transform="rotate(-40 14 56)"/>
+    <ellipse cx="84" cy="36" rx="5" ry="3" fill="#7c6fa0" opacity=".5" transform="rotate(35 84 36)"/>
+    <ellipse cx="18" cy="20" rx="4" ry="2.5" fill="#7c6fa0" opacity=".4" transform="rotate(-45 18 20)"/>
+    <ellipse cx="76" cy="8" rx="4" ry="2.5" fill="#7c6fa0" opacity=".4" transform="rotate(30 76 8)"/>
   </svg>
 
-  <!-- Mushroom left-mid -->
-  <svg class="sticker" style="top:260px;left:28px;width:58px;transform:rotate(-8deg)" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="22" y="38" width="16" height="22" rx="4" fill="#FEFAF2" stroke="#C17A4A" stroke-width="1.8"/>
-    <ellipse cx="30" cy="38" rx="24" ry="16" fill="#C17A4A"/>
-    <ellipse cx="22" cy="33" rx="4" ry="2.5" fill="#FAF3E8" opacity=".55"/>
-    <ellipse cx="36" cy="30" rx="3" ry="2" fill="#FAF3E8" opacity=".45"/>
+  <!-- LEFT MID: small white flower -->
+  <svg class="sticker" style="top:300px;left:22px;width:52px;transform:rotate(-8deg)" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="26" cy="12" rx="7" ry="11" fill="#ede9f5" opacity=".75" transform="rotate(0 26 26)"/>
+    <ellipse cx="26" cy="12" rx="7" ry="11" fill="#ede9f5" opacity=".75" transform="rotate(72 26 26)"/>
+    <ellipse cx="26" cy="12" rx="7" ry="11" fill="#ede9f5" opacity=".75" transform="rotate(144 26 26)"/>
+    <ellipse cx="26" cy="12" rx="7" ry="11" fill="#ede9f5" opacity=".75" transform="rotate(216 26 26)"/>
+    <ellipse cx="26" cy="12" rx="7" ry="11" fill="#ede9f5" opacity=".75" transform="rotate(288 26 26)"/>
+    <circle cx="26" cy="26" r="6" fill="#d4cce8" opacity=".9"/>
   </svg>
 
-  <!-- Leaf sprig left-lower -->
-  <svg class="sticker" style="top:480px;left:10px;width:80px;transform:rotate(12deg)" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M40 90 Q20 60 30 30 Q40 10 40 10 Q40 10 50 30 Q60 60 40 90Z" fill="#4A7C59" opacity=".6"/>
-    <line x1="40" y1="90" x2="40" y2="10" stroke="#2d5c3e" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M40 50 Q28 42 22 32" stroke="#2d5c3e" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-    <path d="M40 62 Q52 54 58 44" stroke="#2d5c3e" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-    <path d="M40 38 Q30 30 26 20" stroke="#2d5c3e" stroke-width="1" stroke-linecap="round" fill="none"/>
+  <!-- LEFT LOWER: trailing vine -->
+  <svg class="sticker" style="top:520px;left:6px;width:70px;transform:rotate(6deg)" viewBox="0 0 70 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M35 105 Q20 80 28 55 Q36 30 30 10" stroke="#7c6fa0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="20" cy="70" rx="10" ry="6" fill="#7c6fa0" opacity=".4" transform="rotate(-30 20 70)"/>
+    <ellipse cx="40" cy="50" rx="10" ry="6" fill="#7c6fa0" opacity=".35" transform="rotate(25 40 50)"/>
+    <ellipse cx="22" cy="32" rx="8" ry="5" fill="#7c6fa0" opacity=".3" transform="rotate(-20 22 32)"/>
   </svg>
 
-  <!-- Candle left-bottom -->
-  <svg class="sticker" style="bottom:160px;left:32px;width:44px;transform:rotate(-5deg)" viewBox="0 0 44 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="12" y="32" width="20" height="42" rx="4" fill="#E8C99A"/>
-    <rect x="18" y="32" width="4" height="42" rx="2" fill="#C9A96A" opacity=".4"/>
-    <line x1="22" y1="32" x2="22" y2="22" stroke="#3B2A1A" stroke-width="1.5" stroke-linecap="round"/>
-    <ellipse cx="22" cy="16" rx="5" ry="7" fill="#C17A4A" opacity=".75"/>
-    <ellipse cx="22" cy="13" rx="2.5" ry="4" fill="#FAF3E8" opacity=".55"/>
+  <!-- BOTTOM LEFT: floating dots -->
+  <svg class="sticker" style="bottom:140px;left:28px;width:38px" viewBox="0 0 38 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="10" cy="10" r="3" fill="#b8a9d4" opacity=".5"/>
+    <circle cx="28" cy="24" r="2" fill="#b8a9d4" opacity=".35"/>
+    <circle cx="14" cy="40" r="2.5" fill="#b8a9d4" opacity=".4"/>
+    <circle cx="30" cy="52" r="1.5" fill="#b8a9d4" opacity=".3"/>
   </svg>
 
-  <!-- RIGHT SIDE -->
-
-  <!-- Cozy mug top-right -->
-  <svg class="sticker" style="top:55px;right:22px;width:62px;transform:rotate(-10deg)" viewBox="0 0 62 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="6" y="22" width="38" height="36" rx="7" fill="#E8C99A" stroke="#C9A96A" stroke-width="1.8"/>
-    <path d="M44 30 Q56 30 56 40 Q56 50 44 50" stroke="#C9A96A" stroke-width="2" stroke-linecap="round" fill="none"/>
-    <path d="M14 10 Q16 4 14 0" stroke="#7AAF8A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6"/>
-    <path d="M22 8 Q24 2 22 -2" stroke="#7AAF8A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".5"/>
-    <path d="M30 10 Q32 4 30 0" stroke="#7AAF8A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6"/>
+  <!-- TOP RIGHT: ink scratches -->
+  <svg class="sticker" style="top:36px;right:18px;width:88px;transform:rotate(-6deg)" viewBox="0 0 88 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 20 Q30 10 50 18 Q70 26 78 14" stroke="#b8a9d4" stroke-width="1" fill="none" stroke-linecap="round" opacity=".6"/>
+    <path d="M6 35 Q24 28 44 34 Q64 40 80 30" stroke="#b8a9d4" stroke-width="0.8" fill="none" stroke-linecap="round" opacity=".4"/>
+    <path d="M14 50 Q34 44 52 50 Q68 56 76 46" stroke="#b8a9d4" stroke-width="0.8" fill="none" stroke-linecap="round" opacity=".35"/>
   </svg>
 
-  <!-- Fern right-mid -->
-  <svg class="sticker" style="top:280px;right:16px;width:72px;transform:rotate(-14deg)" viewBox="0 0 72 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="36" y1="100" x2="36" y2="10" stroke="#4A7C59" stroke-width="2" stroke-linecap="round"/>
-    <path d="M36 80 Q20 65 10 50" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M36 65 Q52 50 62 35" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M36 50 Q22 38 14 24" stroke="#4A7C59" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-    <path d="M36 35 Q48 24 56 12" stroke="#4A7C59" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-    <!-- leaflets left -->
-    <ellipse cx="18" cy="64" rx="9" ry="5" fill="#7AAF8A" opacity=".65" transform="rotate(-35 18 64)"/>
-    <ellipse cx="10" cy="50" rx="9" ry="5" fill="#7AAF8A" opacity=".55" transform="rotate(-40 10 50)"/>
-    <ellipse cx="14" cy="35" rx="8" ry="4" fill="#7AAF8A" opacity=".5" transform="rotate(-45 14 35)"/>
-    <!-- leaflets right -->
-    <ellipse cx="54" cy="49" rx="9" ry="5" fill="#7AAF8A" opacity=".65" transform="rotate(35 54 49)"/>
-    <ellipse cx="56" cy="35" rx="8" ry="4.5" fill="#7AAF8A" opacity=".55" transform="rotate(40 56 35)"/>
+  <!-- RIGHT MID: another white flower, smaller -->
+  <svg class="sticker" style="top:310px;right:20px;width:40px;transform:rotate(15deg)" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="26" cy="12" rx="6" ry="10" fill="#ede9f5" opacity=".6" transform="rotate(0 26 26)"/>
+    <ellipse cx="26" cy="12" rx="6" ry="10" fill="#ede9f5" opacity=".6" transform="rotate(72 26 26)"/>
+    <ellipse cx="26" cy="12" rx="6" ry="10" fill="#ede9f5" opacity=".6" transform="rotate(144 26 26)"/>
+    <ellipse cx="26" cy="12" rx="6" ry="10" fill="#ede9f5" opacity=".6" transform="rotate(216 26 26)"/>
+    <ellipse cx="26" cy="12" rx="6" ry="10" fill="#ede9f5" opacity=".6" transform="rotate(288 26 26)"/>
+    <circle cx="26" cy="26" r="5" fill="#d4cce8" opacity=".85"/>
   </svg>
 
-  <!-- Small berries right-lower -->
-  <svg class="sticker" style="bottom:200px;right:26px;width:54px;transform:rotate(6deg)" viewBox="0 0 54 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="27" y1="65" x2="27" y2="30" stroke="#4A7C59" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M27 45 Q18 35 12 25" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M27 38 Q36 28 42 18" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <circle cx="12" cy="22" r="6" fill="#C17A4A" opacity=".75"/>
-    <circle cx="42" cy="16" r="6" fill="#C17A4A" opacity=".75"/>
-    <circle cx="27" cy="10" r="5" fill="#C17A4A" opacity=".65"/>
-    <circle cx="12" cy="22" r="2" fill="#FAF3E8" opacity=".4"/>
-    <circle cx="42" cy="16" r="2" fill="#FAF3E8" opacity=".4"/>
-    <circle cx="27" cy="10" r="1.5" fill="#FAF3E8" opacity=".4"/>
-  </svg>
-
-  <!-- Acorn bottom-right -->
-  <svg class="sticker" style="bottom:100px;right:40px;width:42px;transform:rotate(-15deg)" viewBox="0 0 42 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="21" cy="38" rx="14" ry="16" fill="#C9A96A"/>
-    <path d="M7 28 Q10 16 21 16 Q32 16 35 28Z" fill="#4A7C59"/>
-    <line x1="21" y1="16" x2="21" y2="8" stroke="#3B2A1A" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- BOTTOM RIGHT: trailing ink marks -->
+  <svg class="sticker" style="bottom:180px;right:18px;width:64px;transform:rotate(-10deg)" viewBox="0 0 64 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 85 Q16 64 22 42 Q28 20 20 6" stroke="#7c6fa0" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="60" rx="8" ry="5" fill="#7c6fa0" opacity=".35" transform="rotate(20 44 60)"/>
+    <ellipse cx="18" cy="40" rx="8" ry="5" fill="#7c6fa0" opacity=".3" transform="rotate(-25 18 40)"/>
+    <circle cx="44" cy="28" r="3" fill="#b8a9d4" opacity=".3"/>
+    <circle cx="20" cy="18" r="2" fill="#b8a9d4" opacity=".25"/>
   </svg>
 
 </div>
@@ -289,39 +270,43 @@
 <main class="page">
 
   <header>
+    <!-- White flower motif, echoing the pfp -->
+    <svg class="flower" width="36" height="36" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="26" cy="11" rx="7" ry="12" fill="#ede9f5" opacity=".9" transform="rotate(0 26 26)"/>
+      <ellipse cx="26" cy="11" rx="7" ry="12" fill="#ede9f5" opacity=".9" transform="rotate(72 26 26)"/>
+      <ellipse cx="26" cy="11" rx="7" ry="12" fill="#ede9f5" opacity=".9" transform="rotate(144 26 26)"/>
+      <ellipse cx="26" cy="11" rx="7" ry="12" fill="#ede9f5" opacity=".9" transform="rotate(216 26 26)"/>
+      <ellipse cx="26" cy="11" rx="7" ry="12" fill="#ede9f5" opacity=".9" transform="rotate(288 26 26)"/>
+      <circle cx="26" cy="26" r="7" fill="#d4cce8"/>
+    </svg>
+
     <div class="site-title">lunark</div>
     <div class="site-subtitle">away for now</div>
     <div class="divider"></div>
   </header>
 
   <div class="note">
-    <div class="note-label">🌿 what's going on</div>
-    <div
-      class="note-body"
-    >nothing, yet!
-this page serves as a cardboard cutout of me for when i decide to step away from everything for a while.
+    <div class="note-label">what's going on</div>
+    <div class="note-body">nothing, yet.
+this page is a placeholder for when i decide to step away for a while.
 
-eventually, when or if that happens, you'll see why here.</div>
+if that's happened, you'll find out why here.</div>
   </div>
 
   <div class="note">
-    <div class="note-label">🌱 what you can do</div>
-    <div
-      class="note-body"
-    >unless there's an obvious reason to contact me, please avoid doing so when i'm away.
-while i do, and always will prioritize my friends very highly, if i'm away, that's a telltale sign i'm not okay mentally.
+    <div class="note-label">what you can do</div>
+    <div class="note-body">unless there's an obvious reason to reach out, please don't while i'm away.
+i do prioritize the people i care about, but if i'm gone, that's usually a sign i'm not doing well.
 
-please take that into consideration accordingly.</div>
+please take that into consideration.</div>
   </div>
 
   <footer>
-    <div class="footer-label">✉️ contact</div>
-    <div
-      class="footer-body"
-    >discord: `kv.427`  //  if it's urgent, you can message my sister on discord as well: `simplyvalerie.`</div>
+    <div class="footer-label">contact</div>
+    <div class="footer-body">discord: `kv.427`  ·  for anything urgent, you can reach my sister: `simplyvalerie.`</div>
   </footer>
 
-  <p class="page-foot">lunark's little away page &nbsp;·&nbsp; thank you for reading :3</p>
+  <p class="page-foot">thank you for checking in</p>
 
 </main>
 
